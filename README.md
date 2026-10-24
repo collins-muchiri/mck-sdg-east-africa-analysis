@@ -1,42 +1,41 @@
 # mck-sdg-east-africa-analysis
 
-Applied statistical analysis of public United Nations SDG data for East Africa. Portfolio artifact 1 of 3, built in public as part of a 24-week learning programme.
+Applied statistical analysis of public United Nations SDG data for East Africa. Portfolio artifact 1.
 
-## The problem
+## What this repository now contains
 
-One decision-oriented question: does the reported regional mean of child stunting prevalence in East Africa depend on which countries you include, and by how much? A donor reading a regional average is reading a sampling decision, usually an invisible one.
+weeks/week01 to weeks/week06: six reproducible modules, one per concept of the statistical
+inference sequence, each with an analysis script, a results note and a figure. week01 samples and
+bias; week02 intervals; week03 confounding; week04 regression diagnostics; week05 power and minimum
+detectable effect; week06 difference-in-differences with a disclosed failed pre-trend.
+docs/ARTIFACT1_BRIEF.pdf: the two-page brief written for a programme director.
+docs/ and MODEL_CARD.md, DATA_PROVENANCE.md, docs/DPIA.md: governance documents.
 
-## Data
+## Reproduce
 
-UN SDG global indicator database, indicator 2.2.1, series SH_STA_STNT, Joint Child Malnutrition Estimates 2025 edition (UNICEF, WHO, World Bank Group). Retrieved by script on 24 October 2026. Public and open. Eight M49 geo areas: Burundi 108, Ethiopia 231, Kenya 404, Rwanda 646, Somalia 706, South Sudan 728, Tanzania 834, Uganda 800. Nothing synthetic.
+    pip install -r requirements.txt
+    python3 weeks/week01/week01_sampling_bias.py
+    python3 weeks/week02/week02_analysis.py
+    python3 weeks/week03/week03_analysis.py
+    python3 weeks/week04/week04_analysis.py
+    python3 weeks/week05/week05_analysis.py
+    python3 weeks/week06/week06_analysis.py
 
-## Method
+Week01 needs network access and caches pages locally. All others run offline from the committed CSV.
 
-1. Pull every country-year observation for the eight codes, with paging, caching and retries.
-2. Audit coverage: reported years, first and latest year, missing years 2015 to 2024.
-3. Draw three samples from the identical frame: all reporters; recent reporters only; better performers only.
-4. Compute the unweighted regional mean of latest-year values under each rule and tabulate the difference.
+## Reading order for a reviewer
 
-## How to run
+docs/ARTIFACT1_BRIEF.pdf first, then weeks/week01/week01_results.md, then whichever week matches the
+claim you are checking. Every results note ends with its limitations, written before the numbers
+were known to be flattering.
 
-    python3 analysis/week01_sampling_bias.py
+## Status and honesty notes
 
-Needs network access to unstats.un.org. Writes data/, docs/ and figures/ in place. Page cache lives in week01_cache/ and is gitignored.
-
-## Findings
-
-| Sample | Rule | n | Mean, per cent | Difference |
-|---|---|---|---|---|
-| A | full frame | 8 | 30.2 | reference |
-| B | recent reporters only | 8 | 30.2 | +0.0 |
-| C | better performers only | 4 | 23.2 | -7.0 |
-
-Sample C moves the regional mean seven percentage points by dropping four countries, with no underlying observation changed. Sample B moves it not at all, and that zero is the more important result: 2.2.1 is a modelled estimate, so every country-year cell is populated and recency selection has nothing to select on. Completeness here is a property of the estimation method, not of national statistical systems. See docs/week01_results.md for the full narrative.
-
-## Limitations
-
-Unweighted mean, so a small country counts the same as a large one. Latest-year values fall in different calendar years across countries. Values are modelled estimates, not direct survey counts. A survey-reported indicator is needed to make recency selection visible; that is week 2 of the programme.
+Data provenance sidecars carry TO VERIFY fields until the account holder fills them from download
+records; train_model.py refuses to run until they are filled, by design. Model metrics are not
+published until that gate clears. No synthetic data is present in this repository; the synthetic
+work lives in mck-dashboard-to-insight and is labelled there.
 
 ## Licence
 
-MIT. See LICENSE.
+MIT.
