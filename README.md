@@ -1,5 +1,11 @@
 # mck-sdg-east-africa-analysis
 
+*Portfolio artifact 1 — applied statistical analysis of public UN SDG data for East Africa; Python.*
+
+![category](https://img.shields.io/badge/category-data-science-0EA5E9?style=flat-square) ![language](https://img.shields.io/badge/language-Python-2563EB?style=flat-square) ![license](https://img.shields.io/badge/license-MIT-16A34A?style=flat-square) ![maintenance](https://img.shields.io/badge/maintenance-active-16A34A?style=flat-square) ![repo](https://img.shields.io/badge/repo-mck--sdg--east--africa--analysis-111827?style=flat-square)
+
+---
+
 Applied statistical analysis of public United Nations SDG data for East Africa. Portfolio artifact 1.
 
 ## What this repository now contains
@@ -39,3 +45,7 @@ work lives in mck-dashboard-to-insight and is labelled there.
 ## Licence
 
 MIT.
+
+## Contribution and license
+
+Issues and pull requests are welcome — please open an issue describing the proposed change before submitting substantive work. This project is released under the MIT License.
